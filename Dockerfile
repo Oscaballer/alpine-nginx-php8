@@ -36,7 +36,7 @@ RUN apk --no-cache add php8=${PHP_VERSION} \
     php8-xmlwriter \
     php8-tokenizer \
     php8-pdo_mysql \
-    nginx supervisor curl tzdata htop mysql-client dcron
+    nginx supervisor curl tzdata htop mysql-client dcron vim
 
 # Symlink php8 => php
 RUN ln -s /usr/bin/php8 /usr/bin/php
