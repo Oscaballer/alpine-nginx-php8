@@ -56,10 +56,10 @@ COPY config/php.ini /etc/php8/conf.d/custom.ini
 COPY config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Setup document root
-RUN mkdir -p /var/www/html
+RUN mkdir -p /var/www/html/public
 
 # Make sure files/folders needed by the processes are accessable when they run under the nobody user
-RUN chown -R nobody.nobody /var/www/html && \
+RUN chown -R nobody.nobody /var/www/html/public && \
   chown -R nobody.nobody /run && \
   chown -R nobody.nobody /var/lib/nginx && \
   chown -R nobody.nobody /var/log/nginx
@@ -68,8 +68,8 @@ RUN chown -R nobody.nobody /var/www/html && \
 USER nobody
 
 # Add application
-WORKDIR /var/www/html
-COPY --chown=nobody src/ /var/www/html/
+WORKDIR /var/www/html/public
+COPY --chown=nobody src/ /var/www/html/public/
 
 # Expose the port nginx is reachable on
 EXPOSE 8080
